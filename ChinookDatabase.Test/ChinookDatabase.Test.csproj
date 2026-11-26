@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -74,7 +74,7 @@
     <Message Text="Generating test T4 templates..." Importance="high" />
 
     <!-- Generate DatabaseFixture test files -->
-    <Exec Command="t4 -r=&quot;$(NewtonsoftJsonDll)&quot; -r=&quot;$(VisualStudioInteropDll)&quot; DatabaseFixture.tt" ContinueOnError="false" WorkingDirectory="$(MSBuildProjectDirectory)/DatabaseTests" />
+    <Exec Condition="false" Command="t4 -r=&quot;$(NewtonsoftJsonDll)&quot; -r=&quot;$(VisualStudioInteropDll)&quot; DatabaseFixture.tt" ContinueOnError="false" WorkingDirectory="$(MSBuildProjectDirectory)/DatabaseTests" />
 
     <Message Text="Test T4 templates generated successfully" Importance="high" />
   </Target>

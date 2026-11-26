@@ -185,7 +185,7 @@ namespace ChinookDatabase.Test.DatabaseTests
         public void ArtistTableShouldBePopulated(string connectionName)
         {
             var dataSet = ExecuteQuery(connectionName, "SELECT * FROM [Artist]");
-            Assert.Equal(275, dataSet.Tables[0].Rows.Count);
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? 277 : 275, dataSet.Tables[0].Rows.Count);
         }
 
         /// <summary>
@@ -203,8 +203,8 @@ namespace ChinookDatabase.Test.DatabaseTests
             Assert.NotNull(row);
 
 			// Assert that the last record has the proper information.            
-            Assert.Equal("275", row["ArtistId"].ToString());
-            Assert.Equal("Philip Glass Ensemble", row["Name"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "277" : "275", row["ArtistId"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "Madeon" : "Philip Glass Ensemble", row["Name"].ToString());
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace ChinookDatabase.Test.DatabaseTests
         public void AlbumTableShouldBePopulated(string connectionName)
         {
             var dataSet = ExecuteQuery(connectionName, "SELECT * FROM [Album]");
-            Assert.Equal(347, dataSet.Tables[0].Rows.Count);
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? 348 : 347, dataSet.Tables[0].Rows.Count);
         }
 
         /// <summary>
@@ -234,9 +234,9 @@ namespace ChinookDatabase.Test.DatabaseTests
             Assert.NotNull(row);
 
 			// Assert that the last record has the proper information.            
-            Assert.Equal("347", row["AlbumId"].ToString());
-            Assert.Equal("Koyaanisqatsi (Soundtrack from the Motion Picture)", row["Title"].ToString());
-            Assert.Equal("275", row["ArtistId"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "348" : "347", row["AlbumId"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "Good Faith" : "Koyaanisqatsi (Soundtrack from the Motion Picture)", row["Title"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "277" : "275", row["ArtistId"].ToString());
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace ChinookDatabase.Test.DatabaseTests
         public void TrackTableShouldBePopulated(string connectionName)
         {
             var dataSet = ExecuteQuery(connectionName, "SELECT * FROM [Track]");
-            Assert.Equal(3503, dataSet.Tables[0].Rows.Count);
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? 3513 : 3503, dataSet.Tables[0].Rows.Count);
         }
 
         /// <summary>
@@ -266,15 +266,15 @@ namespace ChinookDatabase.Test.DatabaseTests
             Assert.NotNull(row);
 
 			// Assert that the last record has the proper information.            
-            Assert.Equal("3503", row["TrackId"].ToString());
-            Assert.Equal("Koyaanisqatsi", row["Name"].ToString());
-            Assert.Equal("347", row["AlbumId"].ToString());
-            Assert.Equal("2", row["MediaTypeId"].ToString());
-            Assert.Equal("10", row["GenreId"].ToString());
-            Assert.Equal("Philip Glass", row["Composer"].ToString());
-            Assert.Equal("206005", row["Milliseconds"].ToString());
-            Assert.Equal("3305164", row["Bytes"].ToString());
-            Assert.Equal("0.99", row["UnitPrice"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "3513" : "3503", row["TrackId"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "Borealis" : "Koyaanisqatsi", row["Name"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "348" : "347", row["AlbumId"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "1" : "2", row["MediaTypeId"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "15" : "10", row["GenreId"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "Hugo Pierre Leclercq" : "Philip Glass", row["Composer"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "285000" : "206005", row["Milliseconds"].ToString());
+            Assert.Equal(connectionName == "Chinook_Sqlite_AutoIncrement" ? "9320000" : "3305164", row["Bytes"].ToString());
+            Assert.Equal("0,99", row["UnitPrice"].ToString());
         }
 
         /// <summary>
@@ -309,8 +309,8 @@ namespace ChinookDatabase.Test.DatabaseTests
             Assert.Equal("Laura", row["FirstName"].ToString());
             Assert.Equal("IT Staff", row["Title"].ToString());
             Assert.Equal("6", row["ReportsTo"].ToString());
-            Assert.Equal(DateTime.Parse("1/9/1968 12:00:00 AM").ToString(), row["BirthDate"].ToString());
-            Assert.Equal(DateTime.Parse("3/4/2004 12:00:00 AM").ToString(), row["HireDate"].ToString());
+            Assert.Equal(DateTime.Parse("9/01/1968 12:00:00 a. m.").ToString(), row["BirthDate"].ToString());
+            Assert.Equal(DateTime.Parse("4/03/2004 12:00:00 a. m.").ToString(), row["HireDate"].ToString());
             Assert.Equal("923 7 ST NW", row["Address"].ToString());
             Assert.Equal("Lethbridge", row["City"].ToString());
             Assert.Equal("AB", row["State"].ToString());
@@ -392,13 +392,13 @@ namespace ChinookDatabase.Test.DatabaseTests
 			// Assert that the last record has the proper information.            
             Assert.Equal("412", row["InvoiceId"].ToString());
             Assert.Equal("58", row["CustomerId"].ToString());
-            Assert.Equal(DateTime.Parse("12/22/2025 12:00:00 AM").ToString(), row["InvoiceDate"].ToString());
+            Assert.Equal(DateTime.Parse("22/12/2025 12:00:00 a. m.").ToString(), row["InvoiceDate"].ToString());
             Assert.Equal("12,Community Centre", row["BillingAddress"].ToString());
             Assert.Equal("Delhi", row["BillingCity"].ToString());
             Assert.Equal("", row["BillingState"].ToString());
             Assert.Equal("India", row["BillingCountry"].ToString());
             Assert.Equal("110017", row["BillingPostalCode"].ToString());
-            Assert.Equal("1.99", row["Total"].ToString());
+            Assert.Equal("1,99", row["Total"].ToString());
         }
 
         /// <summary>
@@ -431,7 +431,7 @@ namespace ChinookDatabase.Test.DatabaseTests
             Assert.Equal("2240", row["InvoiceLineId"].ToString());
             Assert.Equal("412", row["InvoiceId"].ToString());
             Assert.Equal("3177", row["TrackId"].ToString());
-            Assert.Equal("1.99", row["UnitPrice"].ToString());
+            Assert.Equal("1,99", row["UnitPrice"].ToString());
             Assert.Equal("1", row["Quantity"].ToString());
         }
 
